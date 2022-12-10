@@ -12,7 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
-    "mdb-react-ui-kit": "^5.0.0",
+    "mdb-react-ui-kit": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-file-base64": "^1.0.3",
@@ -21,6 +21,9 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
     "web-vitals": "^2.1.4"
+  },
+  "overrides": {
+    "autoprefixer": "10.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
