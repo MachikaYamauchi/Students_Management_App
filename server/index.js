@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
 import userRouter from "./routes/user.js";
+import studentRouter from "./routes/student.js";
 
 mongoose.set('strictQuery', false);
 
@@ -18,6 +19,7 @@ app.use(cors());
 
 // Initial Routes
 app.use("/users", userRouter); // http:localhost:8080/users/signup
+app.use("/student", studentRouter);
 
 const MONGODB_URL =
   "mongodb+srv://machika:AVx.FXwE.2JHmHa@cluster0.cs1mij3.mongodb.net/students_db?retryWrites=true&w=majority";
