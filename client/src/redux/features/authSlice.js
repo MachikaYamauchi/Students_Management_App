@@ -37,7 +37,17 @@ const authSlice = createSlice({
         loading:false
     },
     reducers: {
-
+        // keep the user loggedin even though refresh the screen
+        // use setUser at App.js
+        setUser: (state, action) => { 
+            state.user = action.payload
+        },
+        // logout funtion
+        // use setLogout at Header.js compo
+        setLogout :(state, action) => {
+            localStorage.clear();
+            state.user = null;
+        }
     },
     extraReducers: {
         [signup.pending]:(state, action) => {
@@ -68,5 +78,6 @@ const authSlice = createSlice({
     }
 });
 
-export default authSlice.reducer;
 
+export default authSlice.reducer;
+export const {setUser, setLogout} = authSlice.actions; 

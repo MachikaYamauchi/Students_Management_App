@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   MDBNavbar,
   MDBContainer,
@@ -7,10 +9,18 @@ import {
   MDBNavbarNav,
   MDBNavbarToggler,
   MDBCollapse,
+  MDBBtn,
 } from "mdb-react-ui-kit";
+import { setLogout } from "../redux/features/authSlice";
 
 const Header = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false); //for respinsive header -> small screen -> humberger
+  const { user } = useSelector((state) => ({ ...state.auth })); // To change nav menu depends on login or not
+  const dispatch = useDispatch(); // for logout funtion
+
+  const logoutHandler = () => {
+    dispatch(setLogout());
+  }
   return (
     <MDBNavbar fixed="top" expand="lg" style={{ backgroundColor: "#8b2230" }}>
       <MDBContainer>
@@ -28,7 +38,7 @@ const Header = () => {
         <MDBNavbarToggler
           type="button"
           aria-expanded="false"
-          aria-label='l="Tpggle navigation'
+          aria-label="Toogle navigation"
           onClick={() => {
             setShow(!show);
           }}
@@ -37,56 +47,65 @@ const Header = () => {
           <MDBIcon fas icon="bars"></MDBIcon>
         </MDBNavbarToggler>
         <MDBCollapse navbar show={show}>
-          <MDBNavbarNav right fullWidth={false}>
-            <h5
-              style={{
-                marginRight: "1.2rem",
-                marginTop: "0.5rem",
-                color: "white",
-              }}
-            >
-              Loggedin as:{" "}
-            </h5>
+          <MDBNavbarNav right fullWidth={false} className="mb-4 mb-lg-0">
+            {user?.result?._id && (
+              <h5
+                style={{
+                  marginRight: "1.4rem",
+                  marginTop: "0.5rem",
+                  color: "#efbdc4",
+                }}
+              >
+                Loggedin as:{user?.result?.name}
+              </h5>
+            )}
             <Link
               to="/"
               style={{
                 color: "white",
-                marginRight: "1.2rem",
+                marginRight: "1.4rem",
                 paddingTop: "0.5rem",
               }}
             >
               home
             </Link>
-            <Link
-              to="/"
-              style={{
-                color: "white",
-                marginRight: "1.2rem",
-                paddingTop: "0.5rem",
-              }}
-            >
-              Add Students
-            </Link>
-            <Link
-              to="/login"
-              style={{
-                color: "white",
-                marginRight: "1.2rem",
-                paddingTop: "0.5rem",
-              }}
-            >
-              Login
-            </Link>
-            <Link
-              to="/login"
-              style={{
-                color: "white",
-                marginRight: "1.2rem",
-                paddingTop: "0.5rem",
-              }}
-            >
-              Logout
-            </Link>
+            {user?.result?._id && (
+              <Link
+                to="/addStudent"
+                style={{
+                  color: "white",
+                  marginRight: "1.4rem",
+                  paddingTop: "0.5rem",
+                }}
+              >
+                Add Students
+              </Link>
+            )}
+            {user?.result?._id ? (
+              <Link
+                to="/login"
+                style={{
+                  color: "white",
+                  marginRight: "1.4rem",
+                  paddingTop: "0.2rem",
+                }}
+                className="mt-3 mt-md-0"
+                onClick={logoutHandler}
+              >
+                <MDBBtn color='warning'>Logout</MDBBtn>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                style={{
+                  color: "white",
+                  marginRight: "1.4rem",
+                  paddingTop: "0.2rem",
+                }}
+              >
+                <MDBBtn color='warning'>Login</MDBBtn>
+              </Link>
+            )}
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>

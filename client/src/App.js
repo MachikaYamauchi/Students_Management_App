@@ -1,15 +1,25 @@
 import "./App.css";
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import Header from "./components/Header"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { setUser } from "./redux/features/authSlice";
 
 
 function App() {
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("profile"));
+
+  useEffect(() => {
+    dispatch(setUser(user)) // keep the user loggedin even though refresh the screen
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="App">
