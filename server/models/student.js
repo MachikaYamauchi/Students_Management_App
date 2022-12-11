@@ -2,12 +2,11 @@ import mongoose from "mongoose";
 
 const studentSchema = mongoose.Schema({
     name: String,
-    year: String,
-    address: String,
     email: String,
     phoneNumber: String,
-    graduationHighSchool: String,
-    gender: String,
+    year: String,
+    address: String,
+    graduatedSchool: String,
     description: String,
     participationNumber: String,
     imageFile: String,
@@ -18,6 +17,6 @@ const studentSchema = mongoose.Schema({
     }
 });
 
-const StudentModal = mongoose.model("Student", studentSchema);
+const StudentModel = mongoose.model("Student", studentSchema);
 
-export default StudentModal;
+export default StudentModel;

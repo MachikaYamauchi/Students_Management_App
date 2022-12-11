@@ -33,6 +33,7 @@ const Header = () => {
           }}
           to="/"
         >
+          <MDBIcon fas icon="university" size="sm" className="mb-2 me-2" />
           Vancouver University
         </Link>
         <MDBNavbarToggler

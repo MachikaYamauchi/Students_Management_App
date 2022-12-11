@@ -1,10 +1,19 @@
-import StudentModal from "../models/student.js";
+import StudentModel from "../models/student.js";
 
 export const addStudent = async (req, res) => {
-    const student = req.body;
-    const newStudent = new StudentModal({
-        ...student,
-        editor:req.userId,
+    const { firstName, lastName, email, phoneNumber, year, address, graduatedSchool, description, imageFile } = req.body;
+
+    const newStudent = new StudentModel({
+        name: `${firstName} ${lastName}`,
+        email,
+        phoneNumber,
+        year,
+        address,
+        graduatedSchool,
+        description,
+        participationNumber:0,
+        imageFile,
+        editor: req.userId,
         editedAt: new Date().toISOString()
     });
     try {
