@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import decode from "jwt-decode"
+import { setLogout } from "../redux/features/authSlice";
 import {
   MDBNavbar,
   MDBContainer,
@@ -11,12 +13,19 @@ import {
   MDBCollapse,
   MDBBtn,
 } from "mdb-react-ui-kit";
-import { setLogout } from "../redux/features/authSlice";
 
 const Header = () => {
   const [show, setShow] = useState(false); //for respinsive header -> small screen -> humberger
-  const { user } = useSelector((state) => ({ ...state.auth })); // To change nav menu depends on login or not
   const dispatch = useDispatch(); // for logout funtion
+  const { user } = useSelector((state) => ({ ...state.auth })); // To change nav menu depends on login or not
+  const token = user?.token
+
+  if(token) {
+    const decodedToken = decode(token);
+    if(decodedToken.exp * 1000 < new Date().getTime()) {
+      dispatch(setLogout());
+    }
+  }
 
   const logoutHandler = () => {
     dispatch(setLogout());
