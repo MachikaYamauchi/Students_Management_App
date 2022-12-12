@@ -44,7 +44,21 @@ export const deleteStudent = createAsyncThunk(
     async ({id, toast}, {rejectWithValue}) => {
         try {
             const response = await api.deleteStudent(id);
-            toast.success("Student Delete Successfully");
+            toast.success("Student Deleted Successfully");
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+
+export const updateStudent = createAsyncThunk(
+    "student/updateStudent",
+    async ({id, newStudentdata, toast, navigate}, {rejectWithValue}) => {
+        try {
+            const response = await api.updateStudent(newStudentdata, id);
+            toast.success("Student Updated Successfully");
+            navigate("/");
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -91,6 +105,34 @@ const studentSlice = createSlice({
             state.student = action.payload;
         },
         [getStudent.rejected]:(state, action) => {
+            state.loading = false;
+            state.error = action.payload.message;
+        },
+        [deleteStudent.pending]:(state, action) => {
+            state.loading = true;
+        },
+        [deleteStudent.fulfilled]:(state, action) => {
+            state.loading = false;
+            const { arg: {id} } = action.meta;
+            if(id) {
+                state.students = state.students.filter((student) => student._id !== id);
+            }
+        },
+        [deleteStudent.rejected] :(state, action) => {
+            state.loading = false;
+            state.error = action.payload.message;
+        },
+        [updateStudent.pending]:(state, action) => {
+            state.loading = true;
+        },
+        [updateStudent.fulfilled]:(state, action) => {
+            state.loading = false;
+            const { arg: {id} } = action.meta;
+            if(id) {
+                state.students = state.students.map((student) => student._id === id ? action.payload :student);
+            }
+        },
+        [updateStudent.rejected] :(state, action) => {
             state.loading = false;
             state.error = action.payload.message;
         }

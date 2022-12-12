@@ -6,14 +6,15 @@ import { toast } from "react-toastify";
 
 import { MDBBtn, MDBIcon } from "mdb-react-ui-kit";
 
-const StudentsList = ({_id, imageFile, name, email, faculty, department, year,}) => {
+const StudentsList = ({_id, imageFile, firstName, lastName, email, faculty, department, year,}) => {
+  const name = `${firstName} ${lastName}`;
   const dispatch = useDispatch();
 
-  // const deleteHandler =(id) => {
-  //   if(window.confirm("Are you sure you want to delete this student?")) {
-  //     dispatch(deleteStudent({id, toast}));
-  //   }
-  // };
+  const deleteHandler =(id) => {
+    if(window.confirm("Are you sure you want to delete this student?")) {
+      dispatch(deleteStudent({id, toast}));
+    }
+  };
 
   return (
     <>
@@ -44,11 +45,11 @@ const StudentsList = ({_id, imageFile, name, email, faculty, department, year,})
           <MDBIcon
             fas
             icon="trash"
-            style={{ color: "#dd4b39" }}
+            style={{ color: "#dd4b39", cursor:"pointer" }}
             size="lg"
-            // onClick={deleteHandler(_id)}
+            onClick={() => deleteHandler(_id)}
           />
-          <Link>
+          <Link to={`/editStudent/${_id}`}>
             <MDBIcon
               fas
               icon="edit"

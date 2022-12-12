@@ -13,11 +13,13 @@ export const addStudent = async (req, res) => {
     address,
     graduatedSchool,
     description,
+    participationNumber,
     imageFile,
   } = req.body;
 
   const newStudent = new StudentModel({
-    name: `${firstName} ${lastName}`,
+    firstName,
+    lastName,
     email,
     phoneNumber,
     faculty,
@@ -26,7 +28,7 @@ export const addStudent = async (req, res) => {
     address,
     graduatedSchool,
     description,
-    participationNumber: 0,
+    participationNumber,
     imageFile,
     editor: req.userId,
     editedAt: new Date().toISOString(),
@@ -64,10 +66,10 @@ export const deleteStudent = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res
         .status(404)
-        .json({ message: `No Student exist woth id: ${id}` });
+        .json({ message: `No Student exist with id: ${id}` });
     }
-    await StudentModel.findByIdAndDelete(id);
-    res.json({ message: "Cafe Deleted successfully" });
+    await StudentModel.findByIdAndRemove(id);
+    res.json({ message: "Stundent Deleted successfully" });
   } catch (error) {
     res.status(404).json({ message: "Something went wrong" });
   }
@@ -95,7 +97,7 @@ export const updateStudent = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res
           .status(404)
-          .json({ message: `No Student exist woth id: ${id}` });
+          .json({ message: `No Student exist with id: ${id}` });
     }
     const updatedStudent = {
         firstName,
@@ -112,7 +114,7 @@ export const updateStudent = async (req, res) => {
         imageFile,
         editor,
         _id:id
-    }
+    };
     await StudentModel.findByIdAndUpdate(id, updatedStudent, {new:true});
     res.json(updatedStudent);
   } catch (error) {

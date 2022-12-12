@@ -7,9 +7,9 @@ import {
 } from "mdb-react-ui-kit";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { addStudent } from "../redux/features/studentSlice";
+import { addStudent, updateStudent } from "../redux/features/studentSlice";
 import FileBase from "react-file-base64";
 
 const initialState = {
@@ -23,6 +23,7 @@ const initialState = {
   address: "",
   graduatedSchool: "",
   description: "",
+  participationNumber:""
 };
 
 const AddEditStudent = () => {
@@ -38,11 +39,20 @@ const AddEditStudent = () => {
     address,
     graduatedSchool,
     description,
+    participationNumber
   } = studentData;
-  const { loading, error } = useSelector((state) => ({ ...state.student }));
+  const { error, students } = useSelector((state) => ({ ...state.student }));
   const { user } = useSelector((state) => ({ ...state.auth }));
+  const {id} = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(id) {
+      const singleStudent = students.find(student => student._id === id);
+      setStudentData({...singleStudent})
+    }
+  }, [id])
 
   useEffect(() => {
     error && toast.error(error);
@@ -66,12 +76,18 @@ const AddEditStudent = () => {
       year &&
       address &&
       graduatedSchool &&
-      description
+      description &&
+      participationNumber
     ) {
       const newStudentdata = { ...studentData, name: user?.result?.name };
-      dispatch(addStudent({ newStudentdata, navigate, toast }));
+      
+      if(!id) {
+        dispatch(addStudent({ newStudentdata, navigate, toast }));
+      } else {
+        dispatch(updateStudent({id, newStudentdata, toast, navigate}))
+      }
+      handleClear();
     }
-    handleClear();
   };
 
   const handleClear = () => {
@@ -86,6 +102,7 @@ const AddEditStudent = () => {
       address: "",
       graduatedSchool: "",
       description: "",
+      participationNumber:""
     });
   };
 
@@ -100,7 +117,8 @@ const AddEditStudent = () => {
       className="container"
     >
       <MDBCard alignment="center">
-        <h5>Add Student</h5>
+        
+        <h5>{id ? "Edit Student" : "Add Student" }</h5>
         <MDBCardBody>
           <MDBValidation onSubmit={handleSubmit} className="row g-3" noValidate>
             <div className="col-md-6">
@@ -245,6 +263,20 @@ const AddEditStudent = () => {
                 validation="Please Provide description"
               />
             </div>
+            <div className="col-md-12">
+              <MDBInput
+                label="The number of staff events participation"
+                placeholder="participationNumber"
+                type="number"
+                value={participationNumber}
+                name="participationNumber"
+                onChange={onInputChange}
+                className="form-control"
+                required
+                invalid
+                validation="Please Provide the number of staff events participation."
+              />
+            </div>
             <div className="d-flex justify-content-start mb-4">
               <FileBase
                 type="file"
@@ -255,7 +287,9 @@ const AddEditStudent = () => {
               />
             </div>
             <div className="col-12">
-              <MDBBtn style={{ width: "100%" }}>Submit</MDBBtn>
+              <MDBBtn style={{ width: "100%" }}>
+                {id ? "Update" : "Submit"}
+              </MDBBtn>
               <MDBBtn
                 style={{ width: "100%" }}
                 className="mt-2"

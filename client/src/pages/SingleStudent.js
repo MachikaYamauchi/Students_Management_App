@@ -17,6 +17,7 @@ const SingleStudent = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
   const {student} = useSelector(state => ({...state.student}));
+  const name = `${student.firstName} ${student.lastName}`;
 
   useEffect(() => {
     id && dispatch(getStudent(id))
@@ -33,7 +34,7 @@ const SingleStudent = () => {
               className="mb-3"
               style={{ height: "180px", width: "180px", objectFit: "cover" }}
             />
-            <h4>{student.name}</h4>
+            <h4>{name}</h4>
             <p>{student.year}</p>
             <p>{student.email}</p>
             <p>{student.phoneNumber}</p>
@@ -61,7 +62,7 @@ const SingleStudent = () => {
                 <p>{student.description}</p>
               </MDBListGroupItem>
               <MDBListGroupItem className="d-flex justify-content-between">
-                <h5>Staff event Counts</h5>
+                <h5>The number of participation of staff events</h5>
                 <p style={{ fontSize: "1.2rem" }}>{student.participationNumber}</p>
               </MDBListGroupItem>
             </MDBListGroup>

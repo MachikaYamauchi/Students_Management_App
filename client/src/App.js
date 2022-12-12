@@ -13,6 +13,7 @@ import AddEditStudent from "./pages/AddEditStudent"
 import SingleStudent from "./pages/SingleStudent";
 import { setUser } from "./redux/features/authSlice";
 import PrivateRoute from "./components/PrivateRoute";
+import NotFound from "./pages/NotFound";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/addStudent" element={<PrivateRoute><AddEditStudent /></PrivateRoute>} />
           <Route path="/editStudent/:id" element={<PrivateRoute><AddEditStudent /></PrivateRoute>} />
           <Route path="/student/:id" element={<SingleStudent />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         
       </div>

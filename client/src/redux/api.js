@@ -19,3 +19,4 @@ export const addStudent = (studentData) => API.post("/student", studentData);
 export const getStudents = () => API.get("/student");
 export const getStudent = (id) => API.get(`/student/${id}`);
 export const deleteStudent = (id) => API.delete(`/student/${id}`);
+export const updateStudent = (updatedStudentData, id) => API.patch(`/student/${id}`, updatedStudentData);
