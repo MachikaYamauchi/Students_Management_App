@@ -22,6 +22,7 @@ function App() {
 
   useEffect(() => {
     dispatch(setUser(user)) // keep the user loggedin even though refresh the screen
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

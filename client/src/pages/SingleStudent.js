@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getStudent } from "../redux/features/studentSlice";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner";
 import {
   MDBCard,
   MDBCardImage,
@@ -16,12 +16,18 @@ import {
 const SingleStudent = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
-  const {student} = useSelector(state => ({...state.student}));
+  const {loading, student} = useSelector(state => ({...state.student}));
   const name = `${student.firstName} ${student.lastName}`;
+  const navigate = useNavigate();
 
   useEffect(() => {
     id && dispatch(getStudent(id))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  if(loading) {
+    return <Spinner />
+  }
 
   return (
     <div style={{ margin: "auto", marginTop: "120px", maxWidth: "800px" }}>
@@ -67,11 +73,9 @@ const SingleStudent = () => {
               </MDBListGroupItem>
             </MDBListGroup>
             <div style={{ marginTop: "1rem" }} className="d-flex justify-content-end" >
-              <Link to="/">
-                <MDBBtn color="primary" size="lg">
-                  Close
-                </MDBBtn>
-              </Link>
+              <MDBBtn color="primary" size="lg" onClick={() => navigate("/")}>
+                Back to Home
+              </MDBBtn>
             </div>
           </MDBCol>
         </MDBRow>

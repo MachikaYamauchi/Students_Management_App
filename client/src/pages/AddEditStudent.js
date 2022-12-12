@@ -52,6 +52,8 @@ const AddEditStudent = () => {
       const singleStudent = students.find(student => student._id === id);
       setStudentData({...singleStudent})
     }
+    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
   useEffect(() => {
@@ -80,31 +82,31 @@ const AddEditStudent = () => {
       participationNumber
     ) {
       const newStudentdata = { ...studentData, name: user?.result?.name };
-      
+
       if(!id) {
         dispatch(addStudent({ newStudentdata, navigate, toast }));
       } else {
         dispatch(updateStudent({id, newStudentdata, toast, navigate}))
       }
-      handleClear();
+      // handleClear();
     }
   };
 
-  const handleClear = () => {
-    setStudentData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-      faculty:"",
-      department:"",
-      year: "",
-      address: "",
-      graduatedSchool: "",
-      description: "",
-      participationNumber:""
-    });
-  };
+  // const handleClear = () => {
+  //   setStudentData({
+  //     firstName: "",
+  //     lastName: "",
+  //     email: "",
+  //     phoneNumber: "",
+  //     faculty:"",
+  //     department:"",
+  //     year: "",
+  //     address: "",
+  //     graduatedSchool: "",
+  //     description: "",
+  //     participationNumber:""
+  //   });
+  // };
 
   return (
     <div
@@ -290,14 +292,14 @@ const AddEditStudent = () => {
               <MDBBtn style={{ width: "100%" }}>
                 {id ? "Update" : "Submit"}
               </MDBBtn>
-              <MDBBtn
+              {/* <MDBBtn
                 style={{ width: "100%" }}
                 className="mt-2"
                 color="danger"
                 onClick={handleClear}
               >
                 Clear
-              </MDBBtn>
+              </MDBBtn> */}
             </div>
           </MDBValidation>
         </MDBCardBody>

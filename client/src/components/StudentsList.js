@@ -23,8 +23,9 @@ const StudentsList = ({_id, imageFile, firstName, lastName, email, faculty, depa
           <div className="d-flex align-items-center">
             <img
               src={imageFile}
-              style={{ width: "45px", height: "45px" }}
+              style={{ width: "45px", height: "45px", objectFit:"cover" }}
               className="rounded-circle"
+              alt={_id}
             />
             <div className="ms-3">
               <p className="fw-bold mb-1">{name}</p>

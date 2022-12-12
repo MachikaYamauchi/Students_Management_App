@@ -1,10 +1,7 @@
 import {
-  MDBBadge,
-  MDBBtn,
   MDBTable,
   MDBTableHead,
   MDBTableBody,
-  MDBIcon,
   MDBCard,
 } from "mdb-react-ui-kit";
 import React, { useEffect } from "react";
@@ -19,6 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getStudents());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if(loading) {
