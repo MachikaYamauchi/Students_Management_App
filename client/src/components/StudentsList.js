@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { MDBBtn, MDBIcon } from "mdb-react-ui-kit";
 
 const StudentsList = ({
@@ -11,6 +12,7 @@ const StudentsList = ({
   department,
   year,
 }) => {
+
   return (
     <>
       <tr>
@@ -55,7 +57,7 @@ const StudentsList = ({
         </td>
         <td>
           <Link to={`/student/${_id}`}>
-            More Details
+            <MDBBtn color='primary' outline>More Details</MDBBtn>
           </Link>
         </td>
       </tr>

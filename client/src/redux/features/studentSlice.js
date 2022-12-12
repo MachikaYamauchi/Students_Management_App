@@ -27,6 +27,18 @@ export const getStudents = createAsyncThunk(
     }
 );
 
+export const getStudent = createAsyncThunk(
+    "student/getStudent",
+    async (id, {rejectWithValue}) => {
+        try {
+            const response = await api.getStudent(id);
+            return response.data;
+        } catch(error) {
+            return rejectWithValue(error.response.data);
+        }   
+    }
+)
+
 const studentSlice = createSlice({
     name:"student",
     initialState: {
@@ -55,6 +67,17 @@ const studentSlice = createSlice({
             state.students = action.payload;
         },
         [getStudents.rejected]:(state, action) => {
+            state.loading = false;
+            state.error = action.payload.message;
+        },
+        [getStudent.pending]:(state, action) => {
+            state.loading = true;
+        },
+        [getStudent.fulfilled]:(state, action) => {
+            state.loading = false;
+            state.student = action.payload;
+        },
+        [getStudent.rejected]:(state, action) => {
             state.loading = false;
             state.error = action.payload.message;
         }

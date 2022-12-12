@@ -31,9 +31,19 @@ export const getStudents = async (req, res) => {
         const students = await StudentModel.find();
         res.status(200).json(students);
     } catch (error) {
-        res.status(404).json({message:"Something went wrong"})
+        res.status(404).json({message:"Something went wrong"});
     }
 };
+
+export const getStudent = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const student = await StudentModel.findById(id);
+        res.status(200).json(student);
+    } catch (error) {
+        res.status(404).json({message:"Something went wrong"});
+    }
+}
 
 
 
