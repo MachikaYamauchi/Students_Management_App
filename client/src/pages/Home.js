@@ -11,6 +11,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getStudents } from "../redux/features/studentSlice";
 import StudentsList from "../components/StudentsList";
+import Spinner from "../components/Spinner";
 
 const Home = () => {
   const { students, loading } = useSelector((state) => ({ ...state.student }));
@@ -19,6 +20,10 @@ const Home = () => {
   useEffect(() => {
     dispatch(getStudents());
   }, []);
+
+  if(loading) {
+    return <Spinner />
+  }
 
   return (
     <div style={{ margin: "auto", marginTop: "120px", maxWidth: "800px" }}>

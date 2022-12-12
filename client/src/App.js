@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import AddEditStudent from "./pages/AddEditStudent"
 import SingleStudent from "./pages/SingleStudent";
 import { setUser } from "./redux/features/authSlice";
+import PrivateRoute from "./components/PrivateRoute";
 
 
 function App() {
@@ -31,8 +32,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/addStudent" element={<AddEditStudent />} />
-          <Route path="/editStudent/:id" element={<AddEditStudent />} />
+          <Route path="/addStudent" element={<PrivateRoute><AddEditStudent /></PrivateRoute>} />
+          <Route path="/editStudent/:id" element={<PrivateRoute><AddEditStudent /></PrivateRoute>} />
           <Route path="/student/:id" element={<SingleStudent />} />
         </Routes>
         
