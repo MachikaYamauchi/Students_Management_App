@@ -17,6 +17,8 @@ const initialState = {
   lastName: "",
   email: "",
   phoneNumber: "",
+  faculty:"",
+  department:"",
   year: "",
   address: "",
   graduatedSchool: "",
@@ -30,6 +32,8 @@ const AddEditStudent = () => {
     lastName,
     email,
     phoneNumber,
+    faculty,
+    department,
     year,
     address,
     graduatedSchool,
@@ -57,6 +61,8 @@ const AddEditStudent = () => {
       lastName &&
       email &&
       phoneNumber &&
+      faculty &&
+      department &&
       year &&
       address &&
       graduatedSchool &&
@@ -74,6 +80,8 @@ const AddEditStudent = () => {
       lastName: "",
       email: "",
       phoneNumber: "",
+      faculty:"",
+      department:"",
       year: "",
       address: "",
       graduatedSchool: "",
@@ -151,7 +159,35 @@ const AddEditStudent = () => {
                 validation="Please Provide Phone Number"
               />
             </div>
-            <div className="col-md-12">
+            <div className="col-md-4">
+              <MDBInput
+                label="Faculty"
+                placeholder="Enter Faculty"
+                type="text"
+                value={faculty}
+                name="faculty"
+                onChange={onInputChange}
+                className="form-control"
+                required
+                invalid
+                validation="Please Provide Faculty"
+              />
+            </div>
+            <div className="col-md-4">
+              <MDBInput
+                label="Department"
+                placeholder="Enter Department"
+                type="text"
+                value={department}
+                name="department"
+                onChange={onInputChange}
+                className="form-control"
+                required
+                invalid
+                validation="Please Provide Department"
+              />
+            </div>
+            <div className="col-md-4">
               <MDBInput
                 label="Year"
                 placeholder="Enter Year"

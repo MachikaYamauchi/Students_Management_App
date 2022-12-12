@@ -4,6 +4,8 @@ const studentSchema = mongoose.Schema({
     name: String,
     email: String,
     phoneNumber: String,
+    faculty:String,
+    department:String,
     year: String,
     address: String,
     graduatedSchool: String,
