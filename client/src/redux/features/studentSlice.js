@@ -37,7 +37,20 @@ export const getStudent = createAsyncThunk(
             return rejectWithValue(error.response.data);
         }   
     }
-)
+);
+
+export const deleteStudent = createAsyncThunk(
+    "student/deleteStudent",
+    async ({id, toast}, {rejectWithValue}) => {
+        try {
+            const response = await api.deleteStudent(id);
+            toast.success("Student Delete Successfully");
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
 
 const studentSlice = createSlice({
     name:"student",

@@ -28,7 +28,7 @@ const SingleStudent = () => {
         <MDBRow className="g-0">
           <MDBCol md="4">
             <MDBCardImage
-              src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.webp"
+              src={student.imageFile}
               fluid
               className="mb-3"
               style={{ height: "180px", width: "180px", objectFit: "cover" }}

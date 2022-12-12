@@ -26,7 +26,7 @@ const Home = () => {
   }
 
   return (
-    <div style={{ margin: "auto", marginTop: "120px", maxWidth: "800px" }}>
+    <div style={{ margin: "auto", marginTop: "120px", maxWidth: "900px" }}>
       <MDBCard style={{ padding: "1rem" }}>
         <MDBTable align="middle" responsive>
           <MDBTableHead style={{ backgroundColor: "#58001b", color: "white" }}>

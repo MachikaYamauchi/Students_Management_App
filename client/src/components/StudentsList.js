@@ -1,17 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { deleteStudent } from "../redux/features/studentSlice";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 import { MDBBtn, MDBIcon } from "mdb-react-ui-kit";
 
-const StudentsList = ({
-  _id,
-  imageFile,
-  name,
-  email,
-  faculty,
-  department,
-  year,
-}) => {
+const StudentsList = ({_id, imageFile, name, email, faculty, department, year,}) => {
+  const dispatch = useDispatch();
+
+  // const deleteHandler =(id) => {
+  //   if(window.confirm("Are you sure you want to delete this student?")) {
+  //     dispatch(deleteStudent({id, toast}));
+  //   }
+  // };
 
   return (
     <>
@@ -44,7 +46,7 @@ const StudentsList = ({
             icon="trash"
             style={{ color: "#dd4b39" }}
             size="lg"
-            onClick={() => {}}
+            // onClick={deleteHandler(_id)}
           />
           <Link>
             <MDBIcon
