@@ -4,13 +4,12 @@ import cors from "cors";
 import morgan from "morgan";
 import userRouter from "./routes/user.js";
 import studentRouter from "./routes/student.js";
+import dotenv from "dotenv";
 
-mongoose.set('strictQuery', false);
-
-// AVx.FXwE.2JHmHa
-// mongodb+srv://machika:<password>@cluster0.cs1mij3.mongodb.net/?retryWrites=true&w=majority
+// mongoose.set('strictQuery', false);
 
 const app = express();
+dotenv.config();
 
 app.use(morgan("start"));
 app.use(express.json({ limit: "30mb", extended: true }));
@@ -20,14 +19,14 @@ app.use(cors());
 // Initial Routes
 app.use("/users", userRouter); // http:localhost:8080/users/signup
 app.use("/student", studentRouter);
+app.get("/", (req, res) => {
+  res.send("Welcome to student API");
+})
 
-const MONGODB_URL =
-  "mongodb+srv://machika:AVx.FXwE.2JHmHa@cluster0.cs1mij3.mongodb.net/students_db?retryWrites=true&w=majority";
-
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 mongoose
-  .connect(MONGODB_URL)
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     app.listen(port, () => {
       console.log(`Server running on port ${port}`);
