@@ -23,12 +23,12 @@ app.get("/", (req, res) => {
   res.send("Welcome to student API");
 })
 
-const PORT = process.env.PORT || "8080";
+let port = process.env.PORT || 8080;
 
 mongoose
   .connect(process.env.MONGODB_URL)
   .then(() => {
-    app.listen(PORT, () => {
+    app.listen(port, () => {
       console.log(`Server running on port ${port}`);
     });
   })
