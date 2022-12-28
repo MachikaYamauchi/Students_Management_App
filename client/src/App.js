@@ -31,7 +31,8 @@ function App() {
         <Header />
         <ToastContainer /> {/* Configure toastify */}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/addStudent" element={<PrivateRoute><AddEditStudent /></PrivateRoute>} />

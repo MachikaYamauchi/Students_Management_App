@@ -20,7 +20,7 @@ export const login = createAsyncThunk(
     async({formValue, navigate, toast}, {rejectWithValue}) => {
         try {
             const response = await api.login(formValue);
-            navigate("/");
+            navigate("/home");
             toast.success("Login Succssfully");
             return response.data;
         } catch(error) {
