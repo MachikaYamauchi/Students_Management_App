@@ -6,7 +6,7 @@ import userRouter from "./routes/user.js";
 import studentRouter from "./routes/student.js";
 import dotenv from "dotenv";
 
-// mongoose.set('strictQuery', false);
+mongoose.set('strictQuery', false);
 
 const app = express();
 dotenv.config();
