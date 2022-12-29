@@ -73,7 +73,7 @@ const SingleStudent = () => {
               </MDBListGroupItem>
             </MDBListGroup>
             <div style={{ marginTop: "1rem" }} className="d-flex justify-content-end" >
-              <MDBBtn color="primary" size="lg" onClick={() => navigate("/")}>
+              <MDBBtn color="primary" size="lg" onClick={() => navigate("/home")}>
                 Back to Home
               </MDBBtn>
             </div>

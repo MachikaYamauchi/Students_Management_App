@@ -7,7 +7,7 @@ export const addStudent = createAsyncThunk(
         try {
             const response = await api.addStudent(newStudentdata);
             toast.success("Student added successfully.");
-            navigate("/");
+            navigate("/home");
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -58,7 +58,7 @@ export const updateStudent = createAsyncThunk(
         try {
             const response = await api.updateStudent(newStudentdata, id);
             toast.success("Student Updated Successfully");
-            navigate("/");
+            navigate("/home");
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
