@@ -6,6 +6,8 @@
 Student management Application is a responsive application that helps university personnel to manage the students information.
 [DEMO Site]([https://machikayamauchi.me/benchbakery/home](https://students-management-app.netlify.app)
 
+
+
 ## Features
 - Signup and login with JWT authentification
 - Display the list of the all students
@@ -14,4 +16,32 @@ Student management Application is a responsive application that helps university
 - Delete the students information
 
 ## Upcoming Features
+- Search section with student's name
+- Filter by school year
 
+## Data Architecture
+    .
+    ├── users
+    │   ├── _id
+    │   ├── name
+    │   ├── email
+    │   └── password
+    └── students
+        ├── _id
+        ├── firstName
+        ├── lastName
+        ├── email
+        ├── phoneNumber
+        ├── faculty
+        ├── department
+        ├── year
+        ├── address
+        ├── graduatedSchool
+        ├── description
+        ├── participationNumber
+        ├── imageFile
+        ├── editor
+        └── editedAt
+        
+        
+    
