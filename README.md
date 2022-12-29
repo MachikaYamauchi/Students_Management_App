@@ -1,6 +1,6 @@
 # Students Management Application
 
-<img width="1422" alt="StudentManagementApp_Home" src="https://user-images.githubusercontent.com/95946408/209887023-46c266da-041f-4a0d-994a-9a38f31cdabe.png">
+![StudentManagementApp](https://user-images.githubusercontent.com/95946408/210010896-6b18da17-29a4-4cd1-aa51-cef77b71110e.gif)
 
 ## About the Project
 Student management Application is a responsive application that helps university personnel to manage the students information.
