@@ -17,6 +17,15 @@ Libraries:
 - bcryptjs
 - react file base64
 
+Database:
+- MongoDB
+
+CSS:
+- Material Design for Bootstrap
+
+Hosting:
+- Front-end: Netlify
+
 
 ## Features
 - Signup and login with JWT authentification
