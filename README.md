@@ -6,6 +6,16 @@
 Student management Application is a responsive application that helps university personnel to manage the students information.
 [DEMO Site]([https://machikayamauchi.me/benchbakery/home](https://students-management-app.netlify.app)
 
+## Technologies
+Create React App
+
+Libraries:
+- Redux
+- Express.js
+- Axios
+- JWT
+- bcryptjs
+- react file base64
 
 
 ## Features
