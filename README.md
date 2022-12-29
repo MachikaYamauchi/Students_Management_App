@@ -5,7 +5,7 @@
 ## About the Project
 Student management Application is a responsive application that helps university personnel to manage the students information.
 <br>
-[DEMO Site]([https://students-management-app.netlify.app])
+[DEMO Site](https://students-management-app.netlify.app)
 
 ## Technologies
 Create React App
