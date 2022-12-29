@@ -25,6 +25,7 @@ CSS:
 
 Hosting:
 - Front-end: Netlify
+- Back-end: Heroku
 
 
 ## Features
